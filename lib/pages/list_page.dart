@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ListPage extends StatefulWidget {
   const ListPage({Key? key}) : super(key: key);
@@ -17,12 +18,27 @@ class _ListPageState extends State<ListPage> {
 
   var _controller = TextEditingController();
 
-  List listOfTasks = [];
+  List<String> listOfTasks = [];
+
+  _saveList(list) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setStringList('savedTask', list);
+    return true;
+  }
+
+  _getSavedList(list) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getStringList('savedTask') != null)
+      listOfTasks = prefs.getStringList('savedTask')!;
+    setState(() {});
+  }
 
   @override
   void initState() {
     super.initState();
     listOfTasks.addAll([]);
+    _getSavedList(listOfTasks);
+
     _controller.addListener(() {
       final isButtonActive = _controller.text.isNotEmpty;
       setState(() {
@@ -46,22 +62,23 @@ class _ListPageState extends State<ListPage> {
             TextStyle(fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
         controller: _controller,
         decoration: InputDecoration(
-          hintText: '    Add task here',
+          hintText: '        => Tap here to add task <=',
           suffixIcon: ElevatedButton(
             onPressed: isButtonActive
                 ? () {
                     setState(() => isButtonActive = false);
                     listOfTasks.add(_controller.text);
+                    _saveList(listOfTasks);
                     _controller.clear();
                   }
                 : null,
             style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
-                primary: Colors.yellowAccent),
+                primary: Colors.green),
             child: Text(
-              'ADD',
-              style: TextStyle(fontFamily: "Marker"),
+              'Добавить',
+              style: TextStyle(fontFamily: "Dela"),
             ),
           ),
         ),
@@ -80,7 +97,7 @@ class _ListPageState extends State<ListPage> {
           itemBuilder: (BuildContext context, int task) {
             return Dismissible(
               key: Key(listOfTasks[task]),
-              direction: DismissDirection.startToEnd,
+              direction: DismissDirection.endToStart,
               onDismissed: (direction) {
                 setState(() {
                   listOfTasks.removeAt(task);
