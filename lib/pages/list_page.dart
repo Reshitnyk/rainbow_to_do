@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -21,7 +22,7 @@ class _ListPageState extends State<ListPage> {
   @override
   void initState() {
     super.initState();
-    listOfTasks.addAll(['value', 'second value']);
+    listOfTasks.addAll([]);
     _controller.addListener(() {
       final isButtonActive = _controller.text.isNotEmpty;
       setState(() {
@@ -40,54 +41,66 @@ class _ListPageState extends State<ListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(20))),
           title: TextField(
-            controller: _controller,
-            decoration: InputDecoration(
-              hintText: 'Додати задачу',
-              suffixIcon: ElevatedButton(
-                onPressed: isButtonActive
-                    ? () {
-                        setState(() => isButtonActive = false);
-                        listOfTasks.add(_controller.text);
-                        _controller.clear();
-                      }
-                    : null,
-                style: ElevatedButton.styleFrom(
-                    primary: Colors
-                        .primaries[Random().nextInt(Colors.primaries.length)]),
-                child: Text('Knopka'),
-              ),
+        style:
+            TextStyle(fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+        controller: _controller,
+        decoration: InputDecoration(
+          hintText: '    Add task here',
+          suffixIcon: ElevatedButton(
+            onPressed: isButtonActive
+                ? () {
+                    setState(() => isButtonActive = false);
+                    listOfTasks.add(_controller.text);
+                    _controller.clear();
+                  }
+                : null,
+            style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0)),
+                primary: Colors.yellowAccent),
+            child: Text(
+              'ADD',
+              style: TextStyle(fontFamily: "Marker"),
             ),
-          )),
+          ),
+        ),
+      )),
       //
       //
-      body: ListView.builder(
-        itemCount: listOfTasks.length,
-        itemBuilder: (BuildContext context, int task) {
-          return Dismissible(
-            key: Key(listOfTasks[task]),
-            direction: DismissDirection.startToEnd,
-            onDismissed: (direction) {
-              setState(() {
-                listOfTasks.removeAt(task);
-              });
-            },
-            child: Container(
-                margin: EdgeInsets.fromLTRB(0, 2, 0, 2),
-                padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    color: Colors
-                        .primaries[Random().nextInt(Colors.primaries.length)],
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
-                child: Text(
-                  listOfTasks[task],
-                  style: TextStyle(fontSize: 20),
-                )),
-          );
-        },
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/rainbow2.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: ListView.builder(
+          itemCount: listOfTasks.length,
+          itemBuilder: (BuildContext context, int task) {
+            return Dismissible(
+              key: Key(listOfTasks[task]),
+              direction: DismissDirection.startToEnd,
+              onDismissed: (direction) {
+                setState(() {
+                  listOfTasks.removeAt(task);
+                });
+              },
+              child: Container(
+                  margin: EdgeInsets.fromLTRB(0, 2, 0, 2),
+                  padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: Colors
+                          .primaries[Random().nextInt(Colors.primaries.length)],
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: Text(
+                    listOfTasks[task],
+                    style: TextStyle(fontSize: 20),
+                  )),
+            );
+          },
+        ),
       ),
     );
   }
