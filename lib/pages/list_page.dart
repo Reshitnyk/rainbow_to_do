@@ -47,11 +47,11 @@ class _ListPageState extends State<ListPage> {
     });
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _controller.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -101,6 +101,7 @@ class _ListPageState extends State<ListPage> {
               onDismissed: (direction) {
                 setState(() {
                   listOfTasks.removeAt(task);
+                  _saveList(listOfTasks);
                 });
               },
               child: Container(
