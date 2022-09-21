@@ -1,7 +1,7 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="com.example.to_do_list"
-4    android:versionCode="4001"
+4    android:versionCode="1"
 5    android:versionName="1.0.0" >
 6
 7    <uses-sdk
@@ -17,8 +17,8 @@
 13-->[androidx.core:core:1.6.0] C:\Users\Ihor\.gradle\caches\transforms-3\acbce933e4b464a5224ed377a62db1f5\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
 14        android:icon="@mipmap/ic_launcher"
 14-->C:\GIT\ToDoList\to_do_list\android\app\src\main\AndroidManifest.xml:6:9-43
-15        android:label="to_do_list" >
-15-->C:\GIT\ToDoList\to_do_list\android\app\src\main\AndroidManifest.xml:4:9-35
+15        android:label="MargoToDo" >
+15-->C:\GIT\ToDoList\to_do_list\android\app\src\main\AndroidManifest.xml:4:9-34
 16        <activity
 16-->C:\GIT\ToDoList\to_do_list\android\app\src\main\AndroidManifest.xml:7:9-27:20
 17            android:name="com.example.to_do_list.MainActivity"
