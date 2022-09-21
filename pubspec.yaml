@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   shared_preferences: ^2.0.15
   shared_preferences_web: ^2.0.4
+  flutter_animated_button: ^2.0.1
 
 dev_dependencies:
   flutter_test:
@@ -99,6 +100,13 @@ flutter:
       fonts:
         - asset: fonts/Dela.ttf
   
+    - family: BadScript
+      fonts:
+        - asset: fonts/BadScript.ttf
+
+    - family: Caveat
+      fonts:
+        - asset: fonts/Caveat.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

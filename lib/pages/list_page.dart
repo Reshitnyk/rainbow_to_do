@@ -57,34 +57,62 @@ class _ListPageState extends State<ListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          backgroundColor: Colors.cyanAccent,
           title: TextField(
-        style:
-            TextStyle(fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
-        controller: _controller,
-        decoration: InputDecoration(
-          hintText: '        => Tap here to add task <=',
-          suffixIcon: ElevatedButton(
-            onPressed: isButtonActive
-                ? () {
-                    setState(() => isButtonActive = false);
-                    listOfTasks.add(_controller.text);
-                    _saveList(listOfTasks);
-                    _controller.clear();
-                  }
-                : null,
-            style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0)),
-                primary: Colors.green),
-            child: Text(
-              'Добавить',
-              style: TextStyle(fontFamily: "Dela"),
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.normal,
+              fontFamily: "Caveat",
+              fontSize: 30,
             ),
-          ),
+            controller: _controller,
+            decoration: const InputDecoration(
+                hintText: '=> Tap here to add task <=',
+                hintStyle: TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'France',
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                )
+
+                // suffixIcon: ElevatedButton(
+                //   onPressed: isButtonActive
+                //       ? () {
+                //           setState(() => isButtonActive = false);
+                //           listOfTasks.add(_controller.text);
+                //           _saveList(listOfTasks);
+                //           _controller.clear();
+                //         }
+                //       : null,
+                //   style: ElevatedButton.styleFrom(
+                //       shape: RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.circular(20.0)),
+                //       primary: Colors.green),
+                //   child: Text(
+                //     'Добавить',
+                //     style: TextStyle(fontFamily: "Dela"),
+                //   ),
+                // ),
+                ),
+          )),
+      //
+      //
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.cyanAccent,
+        child: Icon(
+          Icons.add,
+          color: Colors.black,
         ),
-      )),
-      //
-      //
+        onPressed: isButtonActive
+            ? () {
+                setState(() => isButtonActive = false);
+                listOfTasks.add(_controller.text);
+                _saveList(listOfTasks);
+                _controller.clear();
+              }
+            : null,
+      ),
+
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -97,7 +125,7 @@ class _ListPageState extends State<ListPage> {
           itemBuilder: (BuildContext context, int task) {
             return Dismissible(
               key: Key(listOfTasks[task]),
-              direction: DismissDirection.endToStart,
+              direction: DismissDirection.startToEnd,
               onDismissed: (direction) {
                 setState(() {
                   listOfTasks.removeAt(task);
@@ -106,7 +134,7 @@ class _ListPageState extends State<ListPage> {
               },
               child: Container(
                   margin: EdgeInsets.fromLTRB(0, 2, 0, 2),
-                  padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                  padding: EdgeInsets.fromLTRB(25, 5, 25, 5),
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                       color: Colors
@@ -114,7 +142,12 @@ class _ListPageState extends State<ListPage> {
                       borderRadius: BorderRadius.all(Radius.circular(20))),
                   child: Text(
                     listOfTasks[task],
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'BadScript',
+                      fontWeight: FontWeight.bold,
+                      wordSpacing: 4,
+                    ),
                   )),
             );
           },
