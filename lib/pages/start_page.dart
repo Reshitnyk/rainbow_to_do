@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'dart:ui';
-
+import 'text_for_first_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -23,83 +23,13 @@ class StartPage extends StatelessWidget {
             ),
             child: Column(
               children: [
-                //
                 SizedBox(
-                  height: 150,
+                  height: 100,
                 ),
                 //
-                RichText(
-                    text: TextSpan(
-                        text: 'M',
-                        style: TextStyle(
-                          fontFamily: "Monoton",
-                          fontSize: 35,
-                          letterSpacing: 10,
-                          color: Colors.deepPurple,
-                        ),
-                        children: [
-                      TextSpan(
-                          text: 'a',
-                          style: TextStyle(
-                            fontFamily: "France",
-                            color: Colors.primaries[
-                                Random().nextInt(Colors.primaries.length)],
-                          )),
-                      TextSpan(
-                          text: 'R',
-                          style: TextStyle(
-                            fontFamily: "Marker",
-                            color: Colors.primaries[
-                                Random().nextInt(Colors.primaries.length)],
-                          )),
-                      TextSpan(
-                          text: 'g',
-                          style: TextStyle(
-                            fontFamily: "Monoton",
-                            color: Colors.primaries[
-                                Random().nextInt(Colors.primaries.length)],
-                          )),
-                      TextSpan(
-                          text: 'a',
-                          style: TextStyle(
-                            fontFamily: "Alconica",
-                            fontWeight: FontWeight.bold,
-                            color: Colors.primaries[
-                                Random().nextInt(Colors.primaries.length)],
-                            fontStyle: FontStyle.italic,
-                          )),
-                      TextSpan(
-                          text: 'r',
-                          style: TextStyle(
-                            fontFamily: "France",
-                            color: Colors.primaries[
-                                Random().nextInt(Colors.primaries.length)],
-                          )),
-                      TextSpan(
-                          text: 'i',
-                          style: TextStyle(
-                            fontFamily: "Marker",
-                            height: 3.0,
-                            color: Colors.primaries[
-                                Random().nextInt(Colors.primaries.length)],
-                          )),
-                      TextSpan(
-                          text: 't',
-                          style: TextStyle(
-                            fontFamily: "France",
-                            height: 3.0,
-                            color: Colors.primaries[
-                                Random().nextInt(Colors.primaries.length)],
-                          )),
-                      TextSpan(
-                          text: 'a',
-                          style: TextStyle(
-                            fontFamily: "Marker",
-                            height: 3.0,
-                            color: Colors.primaries[
-                                Random().nextInt(Colors.primaries.length)],
-                          )),
-                    ])),
+                FirstString(),
+                //
+                const SecondString(),
                 //
                 SizedBox(
                   height: 50,
@@ -157,32 +87,38 @@ class StartPage extends StatelessWidget {
                 SizedBox(
                   height: 50,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ThirdString(),
+                  ],
+                ),
                 //
-                RichText(
-                    text: TextSpan(
-                        text: 'What',
-                        style: TextStyle(
-                          fontFamily: "Caveat",
-                          fontSize: 50,
-                          color: Colors.primaries[
-                              Random().nextInt(Colors.primaries.length)],
-                        ),
-                        children: [
-                      TextSpan(
-                          text: '  to  ',
-                          style: TextStyle(
-                            fontFamily: 'Aclonica',
-                            color: Colors.primaries[
-                                Random().nextInt(Colors.primaries.length)],
-                          )),
-                      TextSpan(
-                          text: 'Do?',
-                          style: TextStyle(
-                            fontFamily: "France",
-                            color: Colors.primaries[
-                                Random().nextInt(Colors.primaries.length)],
-                          )),
-                    ])),
+                // RichText(
+                //     text: TextSpan(
+                //         text: 'What',
+                //         style: TextStyle(
+                //           fontFamily: "Caveat",
+                //           fontSize: 50,
+                //           color: Colors.primaries[
+                //               Random().nextInt(Colors.primaries.length)],
+                //         ),
+                //         children: [
+                //       TextSpan(
+                //           text: '  to  ',
+                //           style: TextStyle(
+                //             fontFamily: 'Aclonica',
+                //             color: Colors.primaries[
+                //                 Random().nextInt(Colors.primaries.length)],
+                //           )),
+                //       TextSpan(
+                //           text: 'Do?',
+                //           style: TextStyle(
+                //             fontFamily: "France",
+                //             color: Colors.primaries[
+                //                 Random().nextInt(Colors.primaries.length)],
+                //           )),
+                //     ])),
               ],
             )));
   }
